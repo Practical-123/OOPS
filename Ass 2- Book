@@ -1,0 +1,123 @@
+ 
+package Prac2; 
+import java.util.*; 
+ 
+class publication 
+{ 
+ String title; 
+ int price,copies; 
+ static int total=0; 
+ Scanner sc = new Scanner(System.in); 
+  
+ void salecopy() 
+ { 
+  System.out.println("Total sales of publication is = "+total); 
+ } 
+} 
+ 
+class Book extends publication 
+{ 
+ String author; 
+  
+ void getdata() 
+ { 
+  System.out.println("Enter Book Details :"); 
+  System.out.println("Enter Title of the Book :- "); 
+  title = sc.nextLine(); 
+  System.out.println("Enter Author of the Book :-"); 
+  author = sc.nextLine(); 
+  System.out.println("Enter number of copies :- "); 
+  copies = sc.nextInt(); 
+  System.out.println("Enter Price of the Book :- "); 
+  price = sc.nextInt(); 
+ } 
+  
+ void orderCopies() 
+ { 
+  System.out.println("\n\nNumber of copies ordered = "+copies); 
+ }   
+  
+ void salecopy() 
+ { 
+  int sale = price * copies; 
+  System.out.println("sale is = "+sale); 
+  total = total + sale; 
+ } 
+} 
+ 
+class Magzine extends publication 
+{ 
+ int orderQty,current_issue; 
+  
+ void getdata() 
+ { 
+  System.out.println("Enter Magzine Details :"); 
+  System.out.println("Enter Title of the Magzine :"); 
+  title = sc.nextLine(); 
+  System.out.println("Enter Current issues :"); 
+  current_issue = sc.nextInt(); 
+   
+  System.out.println("Enter Order Quantities :"); 
+  orderQty = sc.nextInt(); 
+  System.out.println("Enter price of Magzine :"); 
+  price = sc.nextInt(); 
+ } 
+  
+ void receiveissue() 
+ { 
+  System.out.println("\n\nCurrent Issues :"+current_issue); 
+ } 
+  
+ void salecopy() 
+ { 
+  int sale = orderQty*price; 
+  System.out.println("Sale is ="+sale); 
+   
+  total = total + sale; 
+ } 
+} 
+ 
+public class Book_Magzine { 
+ 
+ public static void main(String[] args) 
+ { 
+      int choice; 
+      Scanner sc = new Scanner(System.in); 
+       
+      do 
+      { 
+       System.out.println("\n1.Book\n2.Magzine\n3.Publication\n4.Exit"); 
+       System.out.println("Enter your choice : "); 
+       choice = sc.nextInt(); 
+        
+       switch(choice) 
+       { 
+        case 1: 
+          Book b = new Book(); 
+          b.getdata(); 
+          b.orderCopies(); 
+          b.salecopy(); 
+          break; 
+          
+        case 2: 
+            Magzine m = new Magzine(); 
+            m.getdata(); 
+            m.receiveissue(); 
+            m.salecopy(); 
+            break; 
+            
+        case 3: 
+               publication p = new publication(); 
+               p.salecopy(); 
+               break; 
+                
+        case 4: 
+            System.out.println("Exit"); 
+            break; 
+       } 
+        
+      }while(choice<4); 
+       
+ } 
+} 
+ 
